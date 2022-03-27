@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
 import CustomButton from '../custom-button/custom-button'
 import FormInput from '../form-input/form-input'
@@ -6,11 +6,14 @@ import FormInput from '../form-input/form-input'
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils'
 
 import './sign-in.styles.scss'
+import { UserContext } from '../../context/user.context'
 
 
 const SignIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const {currentUser, setCurrentUser} = useContext(UserContext)
 
   const handleSubmit = async event => {
     event.preventDefault();

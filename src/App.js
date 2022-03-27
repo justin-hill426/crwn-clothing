@@ -4,16 +4,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './pages/homepage/homepage';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useDispatch, useSelector } from 'react-redux';
 import Shop from './pages/shop/shop';
 import Header from './components/header/header';
 import SignInSignUp from './components/sign-in-and-sign-up/sign-in-and-sign-up';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-import { setCurrentUser } from './redux/user/user.actions';
 
 function App() {
-
-  const dispatch = useDispatch();
 
 
   useEffect(() => {
@@ -24,13 +20,10 @@ function App() {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot(snapShot => {
-          dispatch(setCurrentUser({
-              id: snapShot.id,
-              ...snapShot.data()
-          }));
+         //set somthing 
         });
       }
-      dispatch(setCurrentUser({userAuth}))
+      //set current user
     });
 
     //when the component unmounts
